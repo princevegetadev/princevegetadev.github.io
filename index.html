@@ -50,7 +50,11 @@
                 engine.trail = engine.TRAIL_DROPS;
                 engine.gravity = engine.GRAVITY_SIMPLE;
                 engine.reflection = engine.REFLECTION_HQ;
-                engine.rain([ engine.preset(10, 10, 1) ], 50); 
+                engine.rain([
+                    engine.preset(0, 2, 0.5),
+                    engine.preset(3, 3, 0.3),
+                    engine.preset(5, 5, 0.1)
+                ], 200);
             }
         </script>
     </head>
