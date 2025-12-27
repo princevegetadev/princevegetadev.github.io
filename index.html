@@ -30,7 +30,13 @@
                 width: 100vw; 
                 height: 100vh; 
             }
-            canvas {
+            canvas { 
+                position: fixed !important; 
+                top: 0; 
+                left: 0; 
+                z-index: -1 !important;
+                width: 100vw; 
+                height: 100vh; 
                 pointer-events: none;
             }
             #forest { visibility: hidden; position: absolute; width: 0; height: 0; }
@@ -47,7 +53,7 @@
         </script>
     </head>
     <body>
-    <img id="forest" src="bg.jpg" class="bgimage" style="filter: blur(10px); crossorigin="anonymous"">
+    <img id="forest" src="bg.jpg" class="bgimage" style="filter: blur(8px);" crossorigin="anonymous">
     <canvas id="canvas"></canvas>
         <div
             style="
@@ -350,17 +356,25 @@
                 `;
             }
 
-            window.addEventListener("DOMContentLoaded", async()=>{
+            window.addEventListener("DOMContentLoaded", async () => {
                 await updateDiscord();
-                try {
+
+                setInterval(async () => {
+                    await updateDiscord();
+                }, 15000);
+
+                const bgImg = document.getElementById('forest');
+                if (bgImg.complete) {
                     rainy();
-                } catch (e) {
-                    console.error("Rain failed to load:", e);
+                } else {
+                    bgImg.onload = function() {
+                        rainy();
+                    };
                 }
+                
                 if (!isVisible(projectsOuterDiv)) {
-                    // console.log("Please scroll!");
                     centerBox = document.querySelector(".centered");
-                    const el = document.createElement("p")
+                    const el = document.createElement("p");
                     el.innerText = "Scroll down!";
                     centerBox.insertAdjacentElement('afterend', el);
                     const mb = window.getComputedStyle(centerBox).marginBottom;
@@ -368,7 +382,7 @@
                     el.style.marginBottom = mb;
                     el.style.color = 'white';
                 }
-            })
+            });
         </script>
     </body>
 </html>
