@@ -22,23 +22,22 @@
             * {
                 font-family: "Satoshi", sans-serif !important;
             }
-            #canvas { 
-                position: fixed; 
-                top: 0; 
-                left: 0; 
-                z-index: -1;
-                width: 100vw; 
-                height: 100vh; 
-            }
+            
             canvas { 
                 position: fixed !important; 
                 top: 0; 
                 left: 0; 
-                z-index: 100 !important;
+                z-index: -1 !important;
                 width: 100vw; 
                 height: 100vh; 
                 pointer-events: none;
             }
+
+            .main-wrapper {
+                position: relative;
+                z-index: 1;
+            }
+
             #forest { 
                 display: none;
             }            
@@ -51,14 +50,14 @@
                 engine.trail = engine.TRAIL_DROPS;
                 engine.gravity = engine.GRAVITY_SIMPLE;
                 engine.reflection = engine.REFLECTION_HQ;
-                engine.rain([ engine.preset(3, 3, 0.88) ], 100);
+                engine.rain([ engine.preset(10, 10, 1) ], 50); 
             }
         </script>
     </head>
     <body>
     <img id="forest" src="bg.jpg" class="bgimage" style="filter: blur(8px);" crossorigin="anonymous">
     <canvas id="canvas"></canvas>
-        <div
+        <div class="main-wrapper
             style="
                 --presenceUsernameColor: #ffffff;
                 --presenceStatusColor: rgba(255, 255, 255, 0.7);
