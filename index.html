@@ -50,11 +50,23 @@
                 engine.trail = engine.TRAIL_DROPS;
                 engine.gravity = engine.GRAVITY_SIMPLE;
                 engine.reflection = engine.REFLECTION_HQ;
+                engine.gravity = function(drop) {
+                    if (drop.r1 < 2) { clearInterval(drop.intid); return true; }
+                    this.context.clearRect(drop.x - drop.r1 - 1, drop.y - drop.r1 - 1, 2 * drop.r1 + 2, 2 * drop.r1 + 2);
+                    if (drop.y - drop.r1 > this.glass.height) { clearInterval(drop.intid); return true; }
+                    
+                    drop.speed = drop.speed ? drop.speed + (0.02 * drop.r1) : 0.5; 
+                    
+                    drop.y += drop.speed;
+                    drop.draw();
+                    return false;
+                };
+
                 engine.rain([
                     engine.preset(0, 2, 0.5),
-                    engine.preset(3, 3, 0.3),
-                    engine.preset(5, 5, 0.1)
-                ], 200);
+                    engine.preset(3, 3, 0.8),
+                    engine.preset(5, 8, 1.0)
+                ], 60);
             }
         </script>
     </head>
@@ -119,7 +131,7 @@
                         <div class="div4 centered">
                             <div class="div5">
                                 <div class="topcontainer false">
-                                    <h1 class="titlecontainer false">gamma</h1>
+                                    <h1 class="titlecontainer false">Prince Vegeta [ Gamma ]</h1>
                                     <!-- <h3 class="subtitlecontainer">dev</h3> -->
                                     <h3 class="subtitlecontainer">・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・</h3>
                                     <!-- <h3 class="subtitlecontainer">anime fan</h3> -->
