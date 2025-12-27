@@ -20,25 +20,37 @@
     font-style: normal;
 }
 
-/* For Chrome, Edge, and Safari */
+/* Chrome, Edge, Safari */
 ::-webkit-scrollbar {
     width: 8px;
-    background: rgba(0,0,0,0); /* scrollbar track color */
-}
-::-webkit-scrollbar-thumb {
-    background: #1561c4; /* scrollbar thumb color */
-    border-radius: 5px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #3179d6; /* thumb color on hover */
+    background: rgba(0, 0, 0, 0);
 }
 
-/* For Firefox */
+::-webkit-scrollbar-track {
+    background: rgba(20, 12, 30, 0.85);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        180deg,
+        #6b4fa3,
+        #3f2a66
+    );
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        180deg,
+        #8b6fd1,
+        #5a3e8a
+    );
+}
+
 * {
     scrollbar-width: thin;
-    scrollbar-color: #1561c4 #222; /* thumb color track color */
+    scrollbar-color: #6b4fa3 rgba(20, 12, 30, 0.85);
 }
-
 
 .fixed {
     position: fixed;
