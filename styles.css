@@ -20,6 +20,7 @@
     font-style: normal;
 }
 
+/* Chrome, Edge, Safari */
 ::-webkit-scrollbar {
     width: 8px;
     background: rgba(0, 0, 0, 0);
@@ -33,7 +34,7 @@
     background: linear-gradient(
         180deg,
         #8b6fd1,
-        #5a3e8a
+        #3f2a66
     );
     border-radius: 8px;
 }
@@ -42,13 +43,13 @@
     background: linear-gradient(
         180deg,
         #6b4fa3,
-        #3f2a66
+        #5a3e8a
     );
 }
 
 * {
     scrollbar-width: thin;
-    scrollbar-color: #8b6fd1 rgba(20, 12, 30, 0.85);
+    scrollbar-color: #6b4fa3 rgba(20, 12, 30, 0.85);
 }
 
 .fixed {
