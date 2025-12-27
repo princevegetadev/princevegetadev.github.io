@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="styles.css" data-precedence="next" />
+        <title>@gamma</title>
+        <meta name="description" content="web dev | huge dragon ball fan" />
+        <meta name="author" content="@gamma" />
+        <meta property="og:title" content="@gamma" />
+        <meta property="og:description" content="web dev | huge dragon ball fan" />
+        <meta property="og:image" content="https://avatars.githubusercontent.com/u/182363233" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="@gamma" />
+        <meta name="twitter:description" content="web dev | huge dragon ball fan" />
+        <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/182363233" />
+        <meta name="theme-color" content="#ffffff" />
+        <link rel="stylesheet" data-font="satoshi" href="." />
+        <style data-font="satoshi">
+            body,
+            * {
+                font-family: "Satoshi", sans-serif !important;
+            }
+            #canvas { 
+                position: fixed; 
+                top: 0; 
+                left: 0; 
+                z-index: -1;
+                width: 100vw; 
+                height: 100vh; 
+            }
+            canvas {
+                pointer-events: none;
+            }
+            #forest { visibility: hidden; position: absolute; width: 0; height: 0; }
+        </style>
+        <link rel="preload" href="bg.jpg" as="image">     
+        <script src="rainyday.js"></script>   
+        <script type="text/javascript">
+            function rainy() {
+                var engine = new RainyDay('canvas', 'forest', window.innerWidth, window.innerHeight);
+                engine.trail = engine.TRAIL_DROPS;
+                engine.gravity = engine.GRAVITY_SIMPLE;
+                engine.rain([ engine.preset(3, 3, 0.88) ], 100);
+            }
+        </script>
+    </head>
+    <body>
+    <img id="forest" src="bg.jpg" class="bgimage" style="filter: blur(10px); crossorigin="anonymous"">
+    <canvas id="canvas"></canvas>
+        <div
+            style="
+                --presenceUsernameColor: #ffffff;
+                --presenceStatusColor: rgba(255, 255, 255, 0.7);
+                --presenceContainerBackground: rgba(255, 255, 255, 0.2);
+                --presenceContainerBorder: 2px solid rgba(255, 255, 255, 0.1);
+                --discordServerMembers: rgba(255, 255, 255, 0.6);
+                --secondTabBackground: rgba(255, 255, 255, 0.2);
+                --secondTabBorder: 2px solid rgba(255, 255, 255, 0.1);
+                --discordMissingIcon: rgba(255, 255, 255, 0.25);
+                --modernLayoutSeperator: rgba(255, 255, 255, 0.12);
+                --modernLayoutSeperatorBorder: rgba(255, 255, 255, 0.12);
+                --discordAvatarBorder: 2px solid rgba(255, 255, 255, 0.15);
+                --badgeContainerBackground: rgba(255, 255, 255, 0.2);
+                --badgeContainerBorder: 2px solid rgba(255, 255, 255, 0.04);
+                --userBadge: 20.5px;
+                --textColor: #ffffff;
+                --textColorDarker: rgba(255, 255, 255, 0.5);
+                --iconColor: #ffffff;
+                --backgroundColor: #ffffff;
+                --joinStatus: rgba(255, 255, 255, 0.65);
+                --audioPlayerBar: rgba(255, 255, 255, 0.35);
+                --avatarBorder: 2px solid rgba(255, 255, 255, 0.4);
+                --containerColor: rgba(255, 255, 255, 0.13);
+                --containerBlur: 3px;
+                --containerRadius: 20px;
+                --containerWidth: 40rem;
+                --containerPadding: 35px 15px;
+                --volumeBackgroundcolor: rgba(255, 255, 255, 0.13);
+                --volumeBorder: 2px solid rgba(255, 255, 255, 0.117);
+                --colorUsernameGlow: 0px 0px 16.5px #ffffff;
+                --usernameEffects: url(sparkle_white.gif);
+                --buttonBackground: rgba(255, 255, 255, 0.22);
+                --buttonBorder: 2px solid rgba(255, 255, 255, 0.12);
+                --buttonRadius: 12px;
+                --buttonAlign: center;
+                --buttonBackgroundHover: rgba(255, 255, 255, 0.32);
+                --buttonBorderHover: 2px solid rgba(255, 255, 255, 0.25);
+                --buttonUrlColor: rgba(255, 255, 255, 0.65);
+                --profileViewsContainerBorder: 2px solid rgba(255, 255, 255, 0.10400000000000001);
+                --templatePreviewContainerBackground: rgba(255, 255, 255, 0.4);
+                --platformTextColor: rgba(255, 255, 255, 0.4);
+                --secondTabWidgetDescription: rgba(255, 255, 255, 0.6);
+                --audioIconBackground: rgba(255, 255, 255, 0.2);
+                --progessBarFull: rgba(255, 255, 255, 0.3);
+                --progessBarPlaying: #ffffff;
+                --controlButtonsOther: rgba(255, 255, 255, 0.5);
+                --controlButtonPlaying: #ffffff;
+                --controlTextColor: rgba(255, 255, 255, 0.7);
+                --modernLayoutBottomLeftDivider: rgba(255, 255, 255, 0.14);
+            "
+        >
+            <div class="div1">
+                <div class="div2">
+                    <div class="div3">
+                        <div class="div4 centered">
+                            <div class="div5">
+                                <div class="topcontainer false">
+                                    <h1 class="titlecontainer false">gamma</h1>
+                                    <h3 class="subtitlecontainer">web dev</h3>
+                                    <h3 class="subtitlecontainer">・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・</h3>
+                                    <h3 class="subtitlecontainer">huge dragon ball fan</h3>
+                                </div>
+                                <div class="midboxoutercontainer false">
+                                    <div class="midboxinnercontainer">
+                                        <div class="presence">
+                                            <!--<h1 style="font-weight: 550; font-size: 18.5px; display: flex; align-items: center;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+                                                Featured Project</h1>
+                                            <h3 style="font-weight: 300; font-size: 13.5px;">
+                                                <a rel="noopener noreferer" target="_blank" href="https://github.com/mindcraft-ce/mindcraft-ce">https://github.com/mindcraft-ce/mindcraft-ce</a><br><br>
+                                                The open-source platform for crafting intelligent, collaborative agents in Minecraft using Large Language Models.</h3>
+                                            </h3>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mcVunh_b4c509d547ebc284a4d0 false">
+                                    <div class="quX2nx_87e32c7ed391a936e81d">
+                                        <div class="qytYbN_f868b47b56a17c140676 fwNYeU_41d205e0e5755e844659">
+                                            <style>
+                                                .fwNYeU_41d205e0e5755e844659 svg {
+                                                    color: #ffffff !important;
+                                                    filter: drop-shadow(#ffffff 1px 0 7px) !important;
+                                                }
+                                            </style>
+                                            <a target="_blank" rel="noopener noreferer" title="Link to Discord" href="https://discord.com/users/1287361512171634720">
+                                                <svg xmlns="http://www.w3.org/2000/svg" id="Discord-Logo" viewBox="0 0 126.644 96" width="1em" height="1em">
+                                                    <defs>
+                                                        <style>
+                                                            .cls-1 {
+                                                                fill: #fff;
+                                                            }
+                                                        </style>
+                                                    </defs>
+                                                    <path id="Discord-Symbol-White" class="cls-1" d="M81.15,0c-1.2376,2.1973-2.3489,4.4704-3.3591,6.794-9.5975-1.4396-19.3718-1.4396-28.9945,0-.985-2.3236-2.1216-4.5967-3.3591-6.794-9.0166,1.5407-17.8059,4.2431-26.1405,8.0568C2.779,32.5304-1.6914,56.3725.5312,79.8863c9.6732,7.1476,20.5083,12.603,32.0505,16.0884,2.6014-3.4854,4.8998-7.1981,6.8698-11.0623-3.738-1.3891-7.3497-3.1318-10.8098-5.1523.9092-.6567,1.7932-1.3386,2.6519-1.9953,20.281,9.547,43.7696,9.547,64.0758,0,.8587.7072,1.7427,1.3891,2.6519,1.9953-3.4601,2.0457-7.0718,3.7632-10.835,5.1776,1.97,3.8642,4.2683,7.5769,6.8698,11.0623,11.5419-3.4854,22.3769-8.9156,32.0509-16.0631,2.626-27.2771-4.496-50.9172-18.817-71.8548C98.9811,4.2684,90.1918,1.5659,81.1752.0505l-.0252-.0505ZM42.2802,65.4144c-6.2383,0-11.4159-5.6575-11.4159-12.6535s4.9755-12.6788,11.3907-12.6788,11.5169,5.708,11.4159,12.6788c-.101,6.9708-5.026,12.6535-11.3907,12.6535ZM84.3576,65.4144c-6.2637,0-11.3907-5.6575-11.3907-12.6535s4.9755-12.6788,11.3907-12.6788,11.4917,5.708,11.3906,12.6788c-.101,6.9708-5.026,12.6535-11.3906,12.6535Z"></path>
+                                                </svg>
+                                            </a>
+                                            <a target="_blank" rel="noopener noreferer" title="Link to GitHub" href="https://github.com/gamma7113131">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 100 100">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="#fff"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="xZw2Vb_599d5ef2ae281840bef2 false" style="bottom: 12px; left: 15px;">
+                                <span style="font-weight: 550; font-size: 14px;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                        <path
+                                            fill="currentColor"
+                                            d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"
+                                        ></path>
+                                    </svg>
+                                    673k
+                                </span>
+                            </div>-->
+                        </div>
+
+                        <div class="div4" id="projects-outerdiv" style="padding-top: 0;">
+                            <div class="div5">
+                                <svg id="scroll-arrow" xmlns="http://www.w3.org/2000/svg" style="opacity: 0; transition: opacity 0.3s ease;" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down-icon lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
+                                <div class="topcontainer false">
+                                    <h1 class="titlecontainer false" id="projects">projects</h1>
+                                    <h3 class="subtitlecontainer" id="wiwo">what i'm working on</h3>
+                                </div>
+                                <div class="midboxoutercontainer">
+                                    <div class="midboxinnercontainer">
+                                        <div class="midbox">
+                                            <h1 style="font-weight: 550; font-size: 18.5px;">Aname</h1>
+                                            <h3 style="font-weight: 300; font-size: 13.5px;">
+                                                <a rel="noopener noreferer" target="_blank" href="https://aname.vercel.app/">
+                                                    https://aname.vercel.app/
+                                                </a><br><br>
+                                                Explore and watch thousands of anime series and movies. Top airing, recent episodes, and a massive catalog at your fingertips.
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="midboxoutercontainer">
+                                    <div class="midboxinnercontainer">
+                                        <div class="midbox">
+                                            <h1 style="font-weight: 550; font-size: 18.5px;">VibeTV</h1>
+                                            <h3 style="font-weight: 300; font-size: 13.5px;">
+                                                <a rel="noopener noreferer" target="_blank" href="https://vibetv-app.vercel.app/">
+                                                    https://vibetv-app.vercel.app/
+                                                </a><br><br>
+                                                Watch the latest movies and TV shows online on VibeTV.
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="midboxoutercontainer">
+                                    <div class="midboxinnercontainer">
+                                        <div class="midbox">
+                                            <h1 style="font-weight: 550; font-size: 18.5px;">pyanimecli</h1>
+                                            <h3 style="font-weight: 300; font-size: 13.5px;">
+                                                <a rel="noopener noreferer" target="_blank" href="https://pypi.org/project/pyanimecli">
+                                                    https://pypi.org/project/pyanimecli
+                                                </a><br><br>
+                                                A powerful command-line interface for searching, getting info, and watching anime directly from your terminal, powered by the YumaAPI.
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="midboxoutercontainer">
+                                    <div class="midboxinnercontainer">
+                                        <div class="midbox">
+                                            <h1 style="font-weight: 550; font-size: 18.5px;">YumaAPI</h1>
+                                            <h3 style="font-weight: 300; font-size: 13.5px;">
+                                                <a rel="noopener noreferer" target="_blank" href="https://yumaapi.vercel.app/">
+                                                    https://yumaapi.vercel.app/
+                                                </a><br><br>
+                                                YūmaAPI is a fast, unofficial RESTful API that provides detailed anime data with streaming from Hianime, enabling developers to easily integrate rich anime content and streaming into their applications.
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="div4">
+                            <div class="div5">
+                                <div class="topcontainer false">
+                                    <h1 class="titlecontainer false">FALL</h1>
+                                    <h3 class="subtitlecontainer">by VXTRX</h3>
+                                </div>
+                                <div class="midboxoutercontainer">
+                                    <div class="midboxinnercontainer">
+                                        <div class="midbox" style="background-image: url('FALL_thumbnail.png'); background-size: cover; background-repeat: no-repeat;">
+                                            <div class="midbox" style="backdrop-filter: blur(14px); margin: 0; padding: 0;">
+                                                <h1 style="font-weight: 550; font-size: 18.5px;">FALL</h1>
+                                                <h3 style="font-weight: 300; font-size: 13.5px;">
+                                                    <div class="button-small button-play">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play-icon lucide-play"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg>
+                                                    </div>
+                                                    VXTRX
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const projectsOuterDiv = document.getElementById("projects-outerdiv");
+            const indicator = document.getElementById("scroll-arrow");
+            const nextSection = document.getElementById("wiwo");
+
+            const updateVisibility = () => {
+                if (isVisible(nextSection)) {
+                    indicator.style.opacity = "0"; // fade out
+                    indicator.style.pointerEvents = "none"; // make it unclickable
+                } else {
+                    indicator.style.opacity = "1"; // fade in
+                    indicator.style.pointerEvents = "auto";
+                }
+            }
+
+            window.addEventListener("scroll", updateVisibility);
+
+            function isVisible(el) {
+                const rect = el.getBoundingClientRect();
+                return (
+                    rect.top < window.innerHeight &&
+                    rect.bottom > 0
+                );
+            }
+
+            updateVisibility();
+
+            async function updateDiscord( userId = "1287361512171634720" ) {
+                const presence = document.querySelector(".presence");
+                const res = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
+                const data = (await res.json()).data;
+                const user = data.discord_user;
+                console.log(data);
+                const UserFlags = {
+                    STAFF: 1 << 0,
+                    PARTNER: 1 << 1,
+                    HYPESQUAD: 1 << 2,
+                    BUG_HUNTER_LEVEL_1: 1 << 3,
+                    HYPESQUAD_ONLINE_HOUSE_1: 1 << 6,
+                    HYPESQUAD_ONLINE_HOUSE_2: 1 << 7,
+                    HYPESQUAD_ONLINE_HOUSE_3: 1 << 8,
+                    PREMIUM_EARLY_SUPPORTER: 1 << 9,
+                    TEAM_PSEUDO_USER: 1 << 10,
+                    BUG_HUNTER_LEVEL_2: 1 << 14,
+                    VERIFIED_BOT: 1 << 16,
+                    VERIFIED_DEVELOPER: 1 << 17,
+                    CERTIFIED_MODERATOR: 1 << 18,
+                    BOT_HTTP_INTERACTIONS: 1 << 19,
+                    ACTIVE_DEVELOPER: 1 << 22,
+                };
+
+                function convertIntToFlags(public_flags) {
+                    const flags = [];
+                    for (const flagName in UserFlags) {
+                        const flagValue = UserFlags[flagName];
+                        if ((public_flags & flagValue) === flagValue) {
+                        flags.push(flagName);
+                        }
+                    }
+                    return flags;
+                }
+                const statusMap = {
+                    idle: 'https://cdn3.emoji.gg/emojis/11458-idle.png',
+                    dnd: 'https://cdn3.emoji.gg/emojis/58419-do-not-disturb.png',
+                    online: 'https://cdn3.emoji.gg/emojis/11458-online.png',
+                    offline: 'https://cdn3.emoji.gg/emojis/54394-offline.png',
+                }
+                console.log(convertIntToFlags(user.public_flags))
+                presence.innerHTML = `
+                <div class="pfp">
+                    <img src="https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}" class="pfp">
+                    <img class="status-icon" src="${statusMap[data.discord_status]}">
+                    ${user.avatar_decoration_data != null
+                    ? `<img class="avatar-deco" src="https://cdn.discordapp.com/avatar-decoration-presets/${user.avatar_decoration_data.asset}.png">`
+                    : ''}
+                </div>
+                <div class="usernamecontainer">
+                    <h3>
+                        ${user.display_name}
+                        ${user.primary_guild !== null
+                        ? `<div class="guild-tag">
+                            <img src="https://cdn.discordapp.com/guild-tag-badges/${user.primary_guild.identity_guild_id}/${user.primary_guild.badge}?size=16">
+                            ${user.primary_guild.tag}
+                        </div>`
+                        : ''}
+                    </h3>
+                    ${data.activities && data.activities.length > 0 
+                    ? `<h4 class="activity">${data.activities[0]?.emoji?.name || ''} ${data.activities[0].state}</h4>` 
+                    : ''} 
+                </div>
+                `;
+            }
+
+            window.addEventListener("DOMContentLoaded", async()=>{
+                await updateDiscord();
+                try {
+                    rainy();
+                } catch (e) {
+                    console.error("Rain failed to load:", e);
+                }
+                if (!isVisible(projectsOuterDiv)) {
+                    // console.log("Please scroll!");
+                    centerBox = document.querySelector(".centered");
+                    const el = document.createElement("p")
+                    el.innerText = "Scroll down!";
+                    centerBox.insertAdjacentElement('afterend', el);
+                    const mb = window.getComputedStyle(centerBox).marginBottom;
+                    centerBox.style.marginBottom = '0';
+                    el.style.marginBottom = mb;
+                    el.style.color = 'white';
+                }
+            })
+        </script>
+    </body>
+</html>
