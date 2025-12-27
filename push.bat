@@ -3,4 +3,4 @@ cls
 cd /d "%~dp0"
 git add .
 git commit -m "Commit"
-git push origin main
+git push -u origin main
