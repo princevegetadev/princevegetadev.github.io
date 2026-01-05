@@ -1,8 +1,24 @@
 {
-    "mods": [
-        "sodium",
-        "lithium",
-        "starlight",
-        "fabric-api"
-    ]
+  "mods": [
+    {
+      "name": "sodium",
+      "premium": true,
+      "cracked": true
+    },
+    {
+      "name": "lithium",
+      "premium": true,
+      "cracked": true
+    },
+    {
+      "name": "starlight",
+      "premium": true,
+      "cracked": true
+    },
+    {
+      "name": "fabric-api",
+      "premium": true,
+      "cracked": true
+    }
+  ]
 }
