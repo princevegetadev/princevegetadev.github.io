@@ -1,29 +1,26 @@
 {
   "mods": [
-    {
-      "name": "sodium",
-      "premium": true,
-      "cracked": true
-    },
-    {
-      "name": "lithium",
-      "premium": true,
-      "cracked": true
-    },
-    {
-      "name": "starlight",
-      "premium": true,
-      "cracked": true
-    },
-    {
-      "name": "fabric-api",
-      "premium": true,
-      "cracked": true
-    },
-    {
-      "name": "modmenu",
-      "premium": true,
-      "cracked": true
-    }
+    { "name": "sodium", "premium": true, "cracked": true },
+    { "name": "lithium", "premium": true, "cracked": true },
+    { "name": "starlight", "premium": true, "cracked": true },
+    { "name": "fabric-api", "premium": true, "cracked": true },
+    { "name": "modmenu", "premium": true, "cracked": true },
+    { "name": "essential", "premium": true, "cracked": false },
+    { "name": "tiptapshow", "premium": true, "cracked": true },
+    { "name": "entityculling", "premium": true, "cracked": true },
+    { "name": "ferrite-core", "premium": true, "cracked": true },
+    { "name": "modernfix", "premium": true, "cracked": true },
+    { "name": "immediatelyfast", "premium": true, "cracked": true },
+    { "name": "inventoryhudplus", "premium": true, "cracked": true },
+    { "name": "fullbright", "premium": true, "cracked": true },
+    { "name": "hypixelautogg", "premium": true, "cracked": true },
+    { "name": "simple-voice-chat", "premium": true, "cracked": true },
+    { "name": "perspektive", "premium": true, "cracked": true },
+    { "name": "shield-statuses", "premium": true, "cracked": true },
+    { "name": "crosshair-customizer", "premium": true, "cracked": true },
+    { "name": "coordinates-display", "premium": true, "cracked": true },
+    { "name": "tntimer", "premium": true, "cracked": true },
+    { "name": "time-changer", "premium": true, "cracked": true },
+    { "name": "weather-changer", "premium": true, "cracked": true }
   ]
 }
