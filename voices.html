@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Voice Selector</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        display: flex;
+        justify-content: center;
+        padding: 40px;
+    }
+
+    .container {
+        background: #ffffff;
+        width: 420px;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        margin: 0 0 15px;
+        text-align: center;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 12px;
+    }
+
+    .nav {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    button {
+        padding: 6px 10px;
+        border: none;
+        border-radius: 4px;
+        background: #0078ff;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    button:disabled {
+        background: #bbb;
+        cursor: default;
+    }
+
+    audio {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .meta {
+        font-size: 13px;
+        background: #f0f0f0;
+        padding: 10px;
+        border-radius: 4px;
+    }
+
+    .meta div {
+        margin-bottom: 4px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Voice Selector</h2>
+
+    <input type="text" id="search" placeholder="Search by label..." />
+
+    <select id="voiceSelect"></select>
+
+    <div class="nav">
+        <button id="prevBtn">◀</button>
+        <button id="nextBtn">▶</button>
+    </div>
+
+    <audio id="player" controls></audio>
+
+    <div class="meta" id="meta"></div>
+</div>
+
+<script>
+const VOICES_URL = "https://tts.mce.run/v1/voices";
+const AUDIO_URL  = "https://tts.mce.run/audio";
+
+let voices = [];
+let filteredVoices = [];
+let currentIndex = 0;
+
+const voiceSelect = document.getElementById("voiceSelect");
+const searchInput = document.getElementById("search");
+const player = document.getElementById("player");
+const meta = document.getElementById("meta");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+
+fetch(VOICES_URL)
+    .then(res => res.json())
+    .then(data => {
+        voices = data;
+        filteredVoices = voices;
+        populateSelect();
+        loadVoice(0);
+    });
+
+function populateSelect() {
+    voiceSelect.innerHTML = "";
+    filteredVoices.forEach((v, i) => {
+        const option = document.createElement("option");
+        option.value = i;
+        option.textContent = v.label || v.value;
+        voiceSelect.appendChild(option);
+    });
+}
+
+function loadVoice(index) {
+    currentIndex = index;
+    const voice = filteredVoices[currentIndex];
+
+    voiceSelect.value = index;
+    player.src = `${AUDIO_URL}?voice=${encodeURIComponent(voice.value)}&text=Hello,%20nice%20to%20meet%20you`;
+
+    updateMeta(voice);
+    updateNav();
+}
+
+function updateMeta(voice) {
+    meta.innerHTML = "";
+
+    addMeta("VOICE ID", voice.value);
+    addMeta("LABEL", voice.label);
+    addMeta("GENDER", voice.gender);
+    addMeta("LANGUAGE", voice.language_name);
+    addMeta("LANG CODE", voice.language_code);
+}
+
+function addMeta(label, value) {
+    if (!value) return;
+    const div = document.createElement("div");
+    div.textContent = `${label}: ${value}`;
+    meta.appendChild(div);
+}
+
+function updateNav() {
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex === filteredVoices.length - 1;
+}
+
+voiceSelect.addEventListener("change", e => {
+    loadVoice(parseInt(e.target.value));
+});
+
+prevBtn.addEventListener("click", () => {
+    if (currentIndex > 0) loadVoice(currentIndex - 1);
+});
+
+nextBtn.addEventListener("click", () => {
+    if (currentIndex < filteredVoices.length - 1) {
+        loadVoice(currentIndex + 1);
+    }
+});
+
+searchInput.addEventListener("input", e => {
+    const term = e.target.value.toLowerCase();
+    filteredVoices = voices.filter(v =>
+        (v.label || "").toLowerCase().includes(term)
+    );
+    populateSelect();
+    if (filteredVoices.length) loadVoice(0);
+});
+</script>
+
+</body>
+</html>
