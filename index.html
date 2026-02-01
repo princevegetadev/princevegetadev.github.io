@@ -242,25 +242,57 @@
                             </div>
                         </div>
 
+                        <div class="yt-hidden" id="yt-container">
+                            <div id="yt-player"></div>
+                        </div>
+
                         <div class="div4">
                             <div class="div5">
-                                <div class="topcontainer false">
-                                    <h1 class="titlecontainer false">FALL</h1>
-                                    <h3 class="subtitlecontainer">by VXTRX</h3>
+                                <div class="topcontainer">
+                                    <h1 class="titlecontainer">listening</h1>
+                                    <h3 class="subtitlecontainer">what's on</h3>
                                 </div>
-                                <div class="midboxoutercontainer">
-                                    <div class="midboxinnercontainer">
-                                        <div class="midbox" styl e="background-image: url('FALL_thumbnail.png'); background-size: cover; background-repeat: no-repeat;">
-                                            <div class="midbox" style="backdrop-filter: blur(14px); margin: 0; padding: 0;">
-                                                <h1 style="font-weight: 550; font-size: 18.5px;">FALL</h1>
-                                                <h3 style="font-weight: 300; font-size: 13.5px;">
-                                                    <div class="button-small button-play">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play-icon lucide-play"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg>
-                                                    </div>
-                                                    VXTRX
-                                                </h3>
-                                            </div>
+                                <div class="player-card">
+                                    <div class="player-header">
+                                        <div class="player-thumb" id="player-thumb">
+                                            <img id="player-thumb-img" src="" alt="" loading="eager" crossorigin="anonymous">
                                         </div>
+                                        <div class="player-info">
+                                            <div class="player-title" id="player-title">Loading...</div>
+                                            <div class="player-artist" id="player-artist">—</div>
+                                        </div>
+                                        <a class="player-open-btn" id="player-open-btn" href="#" target="_blank" rel="noopener noreferrer" title="Open on YouTube">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                        </a>
+                                    </div>
+
+                                    <div class="player-progress-wrap" id="progress-wrap">
+                                        <div class="player-progress-bg">
+                                            <div class="player-progress-fill" id="progress-fill"></div>
+                                        </div>
+                                        <div class="player-time-row">
+                                            <span id="time-current">0:00</span>
+                                            <span id="time-total">0:00</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="player-controls">
+                                        <button class="ctrl-btn" id="btn-shuffle" title="Shuffle">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+                                        </button>
+                                        <button class="ctrl-btn" id="btn-prev" title="Previous">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+                                        </button>
+                                        <button class="ctrl-btn ctrl-btn--play" id="btn-play" title="Play">
+                                            <svg id="icon-play" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                                            <svg id="icon-pause" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6zm8-14v14h4V5h-4z"/></svg>
+                                        </button>
+                                        <button class="ctrl-btn" id="btn-next" title="Next">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+                                        </button>
+                                        <button class="ctrl-btn" id="btn-repeat" title="Repeat">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -275,10 +307,10 @@
             const nextSection = document.getElementById("wiwo");
             const updateVisibility = () => {
                 if (isVisible(nextSection)) {
-                    indicator.style.opacity = "0"; // fade out
-                    indicator.style.pointerEvents = "none"; // make it unclickable
+                    indicator.style.opacity = "0";
+                    indicator.style.pointerEvents = "none";
                 } else {
-                    indicator.style.opacity = "1"; // fade in
+                    indicator.style.opacity = "1";
                     indicator.style.pointerEvents = "auto";
                 }
             }
@@ -418,4 +450,167 @@
             });
         </script>
     </body>
+    <script>
+    (function() {
+        const PLAYLIST_ID = "PLrR0UWVc3H18LKwx_IC4zTlZKK2qzJu0Z";
+
+        const THUMB_QUALITIES = ['mqdefault', 'hqdefault', 'sddefault', 'default'];
+
+        let isPlaying = false;
+        let isShuffle = false;
+        let repeatMode = 0;
+        let ytPlayer = null;
+        let progressInterval = null;
+        let thumbRetryTimeout = null;
+
+        (function() {
+            const tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            document.head.appendChild(tag);
+        })();
+
+        window.onYouTubeIframeAPIReady = function() {
+            ytPlayer = new YT.Player('yt-player', {
+                height: '1', width: '1',
+                playerVars: {
+                    listType: 'playlist',
+                    list: PLAYLIST_ID,
+                    autoplay: 0,
+                    controls: 0,
+                },
+                events: {
+                    onReady: onReady,
+                    onStateChange: onStateChange,
+                    onError: function() { goNext(); }
+                }
+            });
+        };
+
+        function onReady() {
+            ytPlayer.setVolume(100);
+            updateTrackInfo();
+            startProgressLoop();
+        }
+
+        function onStateChange(e) {
+            if (e.data === YT.PlayerState.PLAYING) {
+                setPlayUI(true);
+                updateTrackInfo();
+            } else if (e.data === YT.PlayerState.PAUSED) {
+                setPlayUI(false);
+            } else if (e.data === YT.PlayerState.ENDED) {
+                if (repeatMode === 2) { ytPlayer.playVideo(); }
+                else { goNext(); }
+            }
+        }
+
+        function setThumbnail(videoId) {
+            if (!videoId) return;
+
+            const img = document.getElementById('player-thumb-img');
+            let tried = 0;
+
+            function tryNext() {
+                if (tried >= THUMB_QUALITIES.length) {
+                    img.src = '';
+                    return;
+                }
+                const url = `https://i.ytimg.com/vi/${videoId}/${THUMB_QUALITIES[tried]}.jpg`;
+                tried++;
+
+                const test = new Image();
+                test.crossOrigin = 'anonymous';
+                test.onload = function() {
+                    if (test.width === 120 && test.height === 90) {
+                        tryNext();
+                    } else {
+                        img.src = url;
+                    }
+                };
+                test.onerror = function() { tryNext(); };
+                test.src = url;
+            }
+
+            tryNext();
+        }
+
+        function setPlayUI(playing) {
+            isPlaying = playing;
+            document.getElementById('icon-play').style.display = playing ? 'none' : 'block';
+            document.getElementById('icon-pause').style.display = playing ? 'block' : 'none';
+        }
+
+        function formatTime(s) {
+            s = Math.floor(s || 0);
+            const m = Math.floor(s / 60);
+            const sec = s % 60;
+            return m + ':' + (sec < 10 ? '0' : '') + sec;
+        }
+
+        function updateTrackInfo() {
+            if (!ytPlayer || typeof ytPlayer.getVideoData !== 'function') return;
+            const data = ytPlayer.getVideoData();
+            const videoId = data.video_id || '';
+            const title = data.title || 'Unknown';
+            const artist = data.author || '—';
+
+            document.getElementById('player-title').textContent = title;
+            document.getElementById('player-artist').textContent = artist;
+            document.getElementById('player-open-btn').href = `https://www.youtube.com/watch?v=${videoId}&list=${PLAYLIST_ID}`;
+
+            setThumbnail(videoId);
+        }
+
+        function startProgressLoop() {
+            if (progressInterval) clearInterval(progressInterval);
+            progressInterval = setInterval(function() {
+                if (!ytPlayer || typeof ytPlayer.getCurrentTime !== 'function') return;
+                const cur = ytPlayer.getCurrentTime();
+                const dur = ytPlayer.getDuration();
+                if (dur > 0) {
+                    document.getElementById('progress-fill').style.width = ((cur / dur) * 100) + '%';
+                    document.getElementById('time-current').textContent = formatTime(cur);
+                    document.getElementById('time-total').textContent = formatTime(dur);
+                }
+            }, 500);
+        }
+
+        function goNext() {
+            if (ytPlayer) { ytPlayer.nextVideo(); setTimeout(updateTrackInfo, 900); }
+        }
+        function goPrev() {
+            if (ytPlayer) { ytPlayer.previousVideo(); setTimeout(updateTrackInfo, 900); }
+        }
+
+        document.getElementById('btn-play').addEventListener('click', function() {
+            if (!ytPlayer) return;
+            isPlaying ? ytPlayer.pauseVideo() : ytPlayer.playVideo();
+        });
+
+        document.getElementById('btn-next').addEventListener('click', goNext);
+        document.getElementById('btn-prev').addEventListener('click', goPrev);
+
+        document.getElementById('btn-shuffle').addEventListener('click', function() {
+            isShuffle = !isShuffle;
+            this.classList.toggle('active', isShuffle);
+            if (ytPlayer && ytPlayer.setShuffle) ytPlayer.setShuffle(isShuffle);
+        });
+
+        document.getElementById('btn-repeat').addEventListener('click', function() {
+            repeatMode = (repeatMode + 1) % 3;
+            this.classList.toggle('active', repeatMode > 0);
+            if (ytPlayer && ytPlayer.setLoop) ytPlayer.setLoop(repeatMode === 1);
+        });
+
+        document.getElementById('progress-wrap').addEventListener('click', function(e) {
+            if (!ytPlayer || typeof ytPlayer.getDuration !== 'function') return;
+            const bg = this.querySelector('.player-progress-bg');
+            const rect = bg.getBoundingClientRect();
+            const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+            const dur = ytPlayer.getDuration();
+            if (dur > 0) ytPlayer.seekTo(pct * dur, true);
+        });
+
+    })();
+    </script>
 </html>
