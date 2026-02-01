@@ -1,25 +1,23 @@
 {
   "mods": [
-    { "name": "sodium", "premium": true, "cracked": true },
-    { "name": "lithium", "premium": true, "cracked": true },
-    { "name": "starlight", "premium": true, "cracked": true },
-    { "name": "fabric-api", "premium": true, "cracked": true },
-    { "name": "modmenu", "premium": true, "cracked": true },
-    { "name": "tiptapshow", "premium": true, "cracked": true },
-    { "name": "entityculling", "premium": true, "cracked": true },
-    { "name": "ferrite-core", "premium": true, "cracked": true },
-    { "name": "modernfix", "premium": true, "cracked": true },
-    { "name": "immediatelyfast", "premium": true, "cracked": true },
-    { "name": "inventoryhudplus", "premium": true, "cracked": true },
-    { "name": "fullbright", "premium": true, "cracked": true },
-    { "name": "hypixelautogg", "premium": true, "cracked": true },
-    { "name": "simple-voice-chat", "premium": true, "cracked": true },
-    { "name": "perspektive", "premium": true, "cracked": true },
-    { "name": "shield-statuses", "premium": true, "cracked": true },
-    { "name": "crosshair-customizer", "premium": true, "cracked": true },
-    { "name": "coordinates-display", "premium": true, "cracked": true },
-    { "name": "tntimer", "premium": true, "cracked": true },
-    { "name": "time-changer", "premium": true, "cracked": true },
-    { "name": "weather-changer", "premium": true, "cracked": true }
+    {
+      "name": "sodium",
+      "displayName": "Sodium",
+      "client": "both",
+      "versions": {
+        "1.20.1": "https://your-host.com/mods/sodium-fabric-mc1.20.1-0.5.1.jar",
+        "1.20.4": "https://your-host.com/mods/sodium-fabric-mc1.20.4-0.5.3.jar",
+        "1.21": "https://your-host.com/mods/sodium-fabric-mc1.21-0.6.0.jar"
+      }
+    },
+    {
+      "name": "lithium",
+      "displayName": "Lithium",
+      "client": "cracked",
+      "versions": {
+        "1.20.1": "https://your-host.com/mods/lithium-fabric-mc1.20.1-0.11.4.jar",
+        "1.20.4": "https://your-host.com/mods/lithium-fabric-mc1.20.4-0.12.1.jar"
+      }
+    }
   ]
 }
