@@ -18,6 +18,8 @@
         <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/179041613" />
         <meta name="theme-color" content="#ffffff" />
         <link rel="stylesheet" data-font="satoshi" href="." />
+        <link rel="preconnect" href="https://googlevideo.com" />
+        <link rel="preconnect" href="https://i.ytimg.com" />
         <style data-font="satoshi">
             body,
             * {
@@ -41,7 +43,8 @@
 
             #forest { 
                 display: none;
-            }            
+            }   
+            #buffer-player { position: absolute; top: -9999px; left: -9999px; visibility: hidden; }         
         </style>
         <link rel="preload" href="bg.jpg" as="image">     
         <script src="rainyday.js"></script>   
@@ -244,6 +247,7 @@
 
                         <div class="yt-hidden" id="yt-container">
                             <div id="yt-player"></div>
+                            <div id="buffer-player"></div>
                         </div>
 
                         <div class="div4">
@@ -462,6 +466,7 @@
         let ytPlayer = null;
         let progressInterval = null;
         let thumbRetryTimeout = null;
+        let bufferPlayer = null;
 
         (function() {
             const tag = document.createElement('script');
@@ -477,11 +482,20 @@
                     list: PLAYLIST_ID,
                     autoplay: 0,
                     controls: 0,
+                    playsinline: 1,
                 },
                 events: {
                     onReady: onReady,
                     onStateChange: onStateChange,
                     onError: function() { goNext(); }
+                }
+            });
+
+            bufferPlayer = new YT.Player('buffer-player', {
+                height: '1', width: '1',
+                playerVars: { controls: 0, autoplay: 0, mute: 1 },
+                events: {
+                    onReady: function(e) { e.target.mute(); }
                 }
             });
         };
@@ -496,6 +510,19 @@
             if (e.data === YT.PlayerState.PLAYING) {
                 setPlayUI(true);
                 updateTrackInfo();
+
+                if (bufferPlayer && typeof bufferPlayer.loadVideoById === 'function') {
+                    const playlist = ytPlayer.getPlaylist();
+                    const index = ytPlayer.getPlaylistIndex();
+                    const nextIndex = (index + 1) % playlist.length; 
+                    const nextId = playlist[nextIndex];
+
+                    if (nextId) {
+                        bufferPlayer.loadVideoById({videoId: nextId}); 
+                        bufferPlayer.mute(); 
+                    }
+                }
+
             } else if (e.data === YT.PlayerState.PAUSED) {
                 setPlayUI(false);
             } else if (e.data === YT.PlayerState.ENDED) {
@@ -576,10 +603,10 @@
         }
 
         function goNext() {
-            if (ytPlayer) { ytPlayer.nextVideo(); setTimeout(updateTrackInfo, 900); }
+            if (ytPlayer) { ytPlayer.nextVideo(); }
         }
         function goPrev() {
-            if (ytPlayer) { ytPlayer.previousVideo(); setTimeout(updateTrackInfo, 900); }
+            if (ytPlayer) { ytPlayer.previousVideo(); }
         }
 
         document.getElementById('btn-play').addEventListener('click', function() {
