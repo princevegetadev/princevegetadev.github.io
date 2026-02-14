@@ -1,22 +1,34 @@
 {
   "mods": [
     {
-      "name": "sodium",
-      "displayName": "Sodium",
+      "name": "modernfix",
+      "displayName": "Modernfix",
       "client": "both",
       "versions": {
-        "1.20.1": "https://your-host.com/mods/sodium-fabric-mc1.20.1-0.5.1.jar",
-        "1.20.4": "https://your-host.com/mods/sodium-fabric-mc1.20.4-0.5.3.jar",
-        "1.21": "https://your-host.com/mods/sodium-fabric-mc1.21-0.6.0.jar"
+        "1.16.4": "https://princevegetadev.github.io/files/mods/modernfix-forge-5.18.0+mc1.16.5.jar",
+        "1.16.5": "https://princevegetadev.github.io/files/mods/modernfix-forge-5.18.0+mc1.16.5.jar",
+        "1.18.2": "https://princevegetadev.github.io/files/mods/modernfix-forge-5.18.0+mc1.18.2.jar",
+        "1.19.2": "https://princevegetadev.github.io/files/mods/modernfix-forge-5.18.1+mc1.19.2.jar",
+        "1.19.4": "https://princevegetadev.github.io/files/mods/modernfix-forge-5.7.2+mc1.19.4.jar",
+        "1.20": "https://princevegetadev.github.io/files/mods/modernfix-forge-5.0.2+mc1.20.jar",
+        "1.20.1": "https://princevegetadev.github.io/files/mods/modernfix-forge-5.26.2+mc1.20.1.jar",
+        "1.20.2": "https://princevegetadev.github.io/files/mods/modernfix-forge-5.10.1+mc1.20.2.jar"
       }
     },
     {
-      "name": "lithium",
-      "displayName": "Lithium",
-      "client": "cracked",
+      "name": "rubidium",
+      "displayName": "Rubidium",
+      "client": "both",
       "versions": {
-        "1.20.1": "https://your-host.com/mods/lithium-fabric-mc1.20.1-0.11.4.jar",
-        "1.20.4": "https://your-host.com/mods/lithium-fabric-mc1.20.4-0.12.1.jar"
+        "1.16.5": "https://princevegetadev.github.io/files/mods/rubidium-mc1.16.5-0.2.13.jar",
+        "1.18.2": "https://princevegetadev.github.io/files/mods/rubidium-0.5.6.jar",
+        "1.19": "https://princevegetadev.github.io/files/mods/rubidium-0.6.1.jar",
+        "1.19.1": "https://princevegetadev.github.io/files/mods/rubidium-0.6.1.jar",
+        "1.19.2": "https://princevegetadev.github.io/files/mods/rubidium-mc1.19.2-0.6.2c.jar",
+        "1.19.3": "https://princevegetadev.github.io/files/mods/rubidium-0.6.3.jar",
+        "1.19.4": "https://princevegetadev.github.io/files/mods/rubidium-0.6.4.jar",
+        "1.20": "https://princevegetadev.github.io/files/mods/rubidium-0.6.5.jar",
+        "1.20.1": "https://princevegetadev.github.io/files/mods/rubidium-mc1.20.1-0.7.1.jar"
       }
     }
   ]
