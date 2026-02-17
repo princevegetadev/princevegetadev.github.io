@@ -99,43 +99,61 @@
   <video id="player" controls crossorigin playsinline></video>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.2.2/shaka-player.compiled.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script src="https://cdn.plyr.io/3.7.10/plyr.polyfilled.js"></script>
 
 <script>
-  shaka.polyfill.installAll();
-
   const video = document.getElementById('player');
+  const videoUrl = 'https://www.go-web.space/hls/strr_car/stream.m3u8';
+  
+  const headers = {
+    'Origin': 'https://www.web24iptv.online',
+    'Referer': 'https://www.web24iptv.online/',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36',
+    'Accept': '*/*',
+    'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',
+    'Sec-Fetch-Dest': 'empty',
+    'Sec-Fetch-Mode': 'cors',
+    'Sec-Fetch-Site': 'cross-site'
+  };
 
-  async function initPlayer() {
-    const player = new shaka.Player(video);
-
-    player.addEventListener('error', e => console.error('Shaka error:', e.detail));
-
-    const manifestUri = 'https://ev-fuj-dxb-cdn-edge2.aws.playco.com/live/eds/Cartoon_Network_Arabic/DASH/Cartoon_Network_Arabic.mpd';
-    const keyId = '18f735985ada8c2183621c4316150095';
-    const key = '5bbb37067a13fa42433314b9a89f889b';
-
-    try {
-      await player.configure({
-        drm: {
-          clearKeys: { [keyId]: key }
+  if (Hls.isSupported()) {
+    const hls = new Hls({
+      xhrSetup: function(xhr, url) {
+        for (const [key, value] of Object.entries(headers)) {
+          xhr.setRequestHeader(key, value);
         }
-      });
-      await player.load(manifestUri);
-      console.log('Video loaded!');
-    } catch (e) {
-      console.error('Error loading video:', e);
-    }
-
-    const plyrPlayer = new Plyr(video, {
-      controls: ['play', 'progress', 'volume', 'fullscreen'],
+      }
+    });
+    
+    hls.loadSource(videoUrl);
+    hls.attachMedia(video);
+    
+    hls.on(Hls.Events.MANIFEST_PARSED, function() {
+      video.play().catch(e => console.log('Autoplay prevented:', e));
+    });
+    
+    hls.on(Hls.Events.ERROR, function(event, data) {
+      console.error('HLS Error:', data);
+    });
+    
+    const player = new Plyr(video, {
+      controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
+      autoplay: false,
+      hideControls: false
+    });
+    
+  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = videoUrl;
+    
+    console.warn('Safari detected - headers not supported');
+    
+    const player = new Plyr(video, {
+      controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
       autoplay: false,
       hideControls: false
     });
   }
-
-  initPlayer();
 </script>
 </body>
 </html>
