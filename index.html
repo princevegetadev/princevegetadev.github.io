@@ -417,7 +417,7 @@
                         : ''}
                     </h3>
                     ${data.activities && data.activities.length > 0 
-                    ? `<h4 class="activity">${data.activities[0]?.emoji?.name || ''} ${data.activities[0].state}</h4>` 
+                    ? `<h4 class="activity">${data.activities[0]?.emoji ? (data.activities[0].emoji.id ? `<img src="https://cdn.discordapp.com/emojis/${data.activities[0].emoji.id}.webp?size=22" style="width:18px;height:18px;vertical-align:middle;">` : data.activities[0].emoji.name) : ''} ${data.activities[0].state}</h4>`
                     : ''} 
                 </div>
                 `;
