@@ -1,141 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cartoon Network Arabic</title>
-
-<link rel="stylesheet" href="https://cdn.plyr.io/3.7.10/plyr.css" />
-
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #111;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    flex-direction: column;
-    padding: 20px;
-  }
-
-  header {
-    background-color: #000;
-    color: #ffcc00;
-    text-align: center;
-    padding: 20px 30px;
-    border-radius: 12px;
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 20px;
-    width: 100%;
-    max-width: 1200px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  }
-
-  .player-container {
-    width: 100%;
-    max-width: 1200px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  }
-
-  video {
-    width: 100%;
-    height: auto;
-    background-color: #000;
-  }
-
-  .buttons {
-    margin-top: 20px;
-    display: flex;
-    gap: 15px;
-  }
-
-  .btn {
-    display: inline-block;
-    background-color: #ffcc00;
-    color: #000;
-    padding: 10px 20px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-  }
-
-  .btn:hover {
-    background-color: #ffdd33;
-    transform: translateY(-2px);
-  }
-
-  footer {
-    margin-top: 30px;
-    font-size: 14px;
-    color: #aaa;
-    text-align: center;
-  }
-
-  footer a {
-    color: #ffcc00;
-    text-decoration: none;
-  }
-
-  footer a:hover {
-    text-decoration: underline;
-  }
-</style>
+    <meta charset="UTF-8">
+    <title>Cartoon Network Arabic – Multi‑fallback</title>
+    <style>
+        body { background:#000; color:#fff; font-family:system-ui; text-align:center; padding:20px; }
+        video { width:90%; max-width:960px; background:#000; border-radius:12px; }
+        #log { margin-top:20px; color:#aaa; font-size:14px; }
+    </style>
+    <!-- Plyr for beautiful controls -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.10/plyr.css" />
 </head>
 <body>
+    <h1>Cartoon Network Arabic</h1>
+    <video id="player" controls crossorigin="anonymous" playsinline></video>
+    <div id="log">Trying to connect…</div>
 
-<header>Cartoon Network Arabic Stream</header>
+    <!-- Shaka Player (DASH) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.2.2/shaka-player.compiled.js"></script>
+    <!-- hls.js (HLS fallback) -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <!-- Plyr UI -->
+    <script src="https://cdn.plyr.io/3.7.10/plyr.polyfilled.js"></script>
 
-<div class="player-container">
-  <video id="player" controls crossorigin playsinline></video>
-</div>
+    <script>
+        const keyId = '18f735985ada8c2183621c4316150095';
+        const keyHex = '5bbb37067a13fa42433314b9a89f889b';
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.2.2/shaka-player.compiled.js"></script>
-<script src="https://cdn.plyr.io/3.7.10/plyr.polyfilled.js"></script>
+        const DASH_URL = 'https://ev-fuj-dxb-cdn-edge2.aws.playco.com/live/eds/Cartoon_Network_Arabic/DASH/Cartoon_Network_Arabic.mpd';
+        const HLS_URL = 'https://www.go-web.space/hls/strr_car/stream.m3u8';
 
-<script>
-  shaka.polyfill.installAll();
+        const video = document.getElementById('player');
+        const log = document.getElementById('log');
 
-  const video = document.getElementById('player');
+        let currentPlayer = null;   // will hold Plyr instance
 
-  async function initPlayer() {
-    const player = new shaka.Player(video);
-
-    player.addEventListener('error', e => console.error('Shaka error:', e.detail));
-
-    const manifestUri = 'https://ev-fuj-dxb-cdn-edge2.aws.playco.com/live/eds/Cartoon_Network_Arabic/DASH/Cartoon_Network_Arabic.mpd';
-    const keyId = '18f735985ada8c2183621c4316150095';
-    const key = '5bbb37067a13fa42433314b9a89f889b';
-
-    try {
-      await player.configure({
-        drm: {
-          clearKeys: { [keyId]: key }
+        function showError(msg) {
+            log.innerHTML = `❌ ${msg}`;
         }
-      });
-      await player.load(manifestUri);
-      console.log('Video loaded!');
-    } catch (e) {
-      console.error('Error loading video:', e);
-    }
 
-    const plyrPlayer = new Plyr(video, {
-      controls: ['play', 'progress', 'volume', 'fullscreen'],
-      autoplay: false,
-      hideControls: false
-    });
-  }
+        function showInfo(msg) {
+            log.innerHTML = `ℹ️ ${msg}`;
+        }
 
-  initPlayer();
-</script>
+        // Helper: attach Plyr to video
+        function attachPlyr() {
+            if (currentPlayer) currentPlayer.destroy();
+            currentPlayer = new Plyr(video, {
+                controls: ['play-large','play','progress','current-time','mute','volume','captions','settings','airplay','download','fullscreen'],
+                autoplay: false,
+                hideControls: false,
+            });
+        }
+
+        // ---------- METHOD 1: DASH + ClearKey (Shaka) ----------
+        function tryDASH() {
+            showInfo('Trying DASH (Shaka + ClearKey)…');
+            const shakaPlayer = new shaka.Player(video);
+
+            shakaPlayer.configure({
+                drm: {
+                    clearKeys: { [keyId]: keyHex }
+                }
+            });
+
+            shakaPlayer.addEventListener('error', (event) => {
+                const err = event.detail;
+                console.error('Shaka error:', err);
+                showError(`DASH failed (${err.category}/${err.code}). Trying HLS…`);
+                shakaPlayer.destroy();
+                tryHLS();
+            });
+
+            shakaPlayer.load(DASH_URL).then(() => {
+                showInfo('✅ Playing via DASH');
+                attachPlyr();
+            }).catch((err) => {
+                console.error('Shaka load error:', err);
+                showError('DASH failed. Trying HLS…');
+                shakaPlayer.destroy();
+                tryHLS();
+            });
+        }
+
+        // ---------- METHOD 2: HLS + ClearKey (hls.js) ----------
+        function tryHLS() {
+            showInfo('Trying HLS (hls.js + ClearKey)…');
+            if (!Hls.isSupported()) {
+                showError('HLS not supported in this browser. Trying direct video…');
+                tryDirectVideo();
+                return;
+            }
+            const hls = new Hls({
+                // Pass the DRM keys for ClearKey
+                emeEnabled: true,
+                widevineLicenseUrl: null,
+                // ClearKey configuration
+                // hls.js supports drm config
+            });
+
+            // Configure ClearKey via key system options
+            hls.config.drmSystems = {
+                'org.w3.clearkey': {
+                    licenseUrl: 'data:application/json;base64,' + btoa(JSON.stringify({
+                        keys: [{ kty: 'oct', kid: keyId, k: keyHex }]
+                    }))
+                }
+            };
+
+            hls.loadSource(HLS_URL);
+            hls.attachMedia(video);
+
+            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                showInfo('HLS manifest loaded, attempting playback…');
+                video.play().then(() => {
+                    attachPlyr();
+                    showInfo('✅ Playing via HLS (hls.js)');
+                }).catch((e) => {
+                    showError('Autoplay blocked or key error. Check console.');
+                });
+            });
+
+            hls.on(Hls.Events.ERROR, (event, data) => {
+                if (data.fatal) {
+                    console.error('hls.js fatal error:', data);
+                    switch (data.type) {
+                        case Hls.ErrorTypes.NETWORK_ERROR:
+                            showError('HLS network error (probably 403 Forbidden).');
+                            break;
+                        case Hls.ErrorTypes.MEDIA_ERROR:
+                            showError('HLS media error – maybe DRM key rejected.');
+                            break;
+                        default:
+                            showError('HLS fatal error.');
+                    }
+                    hls.destroy();
+                    tryDirectVideo();
+                }
+            });
+        }
+
+        // ---------- METHOD 3: Direct video (will not decrypt, just to show) ----------
+        function tryDirectVideo() {
+            showInfo('Trying direct video (no DRM, so will likely be black).');
+            video.src = HLS_URL;
+            attachPlyr();
+            setTimeout(() => {
+                if (video.videoWidth === 0) {
+                    showError('Direct video failed. Switch to the streamlink command below.');
+                }
+            }, 5000);
+        }
+
+        // ---------- Fallback note ----------
+        window.addEventListener('load', () => {
+            // Start with the most reliable method
+            tryDASH();
+
+            // Show a persistent tip
+            const tip = document.createElement('div');
+            tip.style.marginTop = '30px';
+            tip.style.color = '#df0';
+            tip.innerHTML = `📌 If the browser fails, use this command in your terminal:<br>
+                <code style="background:#222;padding:4px 8px;border-radius:4px;">
+                streamlink --http-header "Origin=https://www.yallatv.online" --http-header "User-Agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" --hls-segment-key-uri "data:text/plain;base64,W7s3Bnp6E/pCQzMUuainn4s=" "https://www.go-web.space/hls/strr_car/stream.m3u8" best
+                </code>`;
+            document.body.appendChild(tip);
+        });
+    </script>
 </body>
 </html>
